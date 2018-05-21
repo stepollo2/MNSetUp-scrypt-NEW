@@ -110,6 +110,27 @@ chmod 755 /usr/local/bin/trittium*
 mkdir $USERHOME/.trittium2
 
 
+
+cat > /etc/systemd/system/trittiumd.service << EOL
+[Unit]
+Description=trittiumd
+After=network.target
+[Service]
+Type=forking
+User=${USER}
+WorkingDirectory=${USERHOME}
+ExecStart=/usr/local/bin/trittiumd -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2
+ExecStop=/usr/local/bin/trittium-cli -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2 stop
+Restart=on-abort
+[Install]
+WantedBy=multi-user.target
+EOL
+sudo systemctl enable trittiumd
+sudo systemctl stop trittiumd
+
+sleep 1
+
+
 # Create trittium2.conf
 touch $USERHOME/.trittium2/trittium2.conf
 cat > $USERHOME/.trittium2/trittium2.conf << EOL
@@ -129,22 +150,7 @@ chown -R $USER:$USER $USERHOME/.trittium2
 
 sleep 1
 
-cat > /etc/systemd/system/trittiumd.service << EOL
-[Unit]
-Description=trittiumd
-After=network.target
-[Service]
-Type=forking
-User=${USER}
-WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/trittiumd -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2
-ExecStop=/usr/local/bin/trittium-cli -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2 stop
-Restart=on-abort
-[Install]
-WantedBy=multi-user.target
-EOL
-sudo systemctl enable trittiumd
-sudo systemctl stop trittiumd
+
 sudo systemctl start trittiumd
 
 clear
@@ -157,7 +163,6 @@ until su -c "trittium-cli mnsync status 2>/dev/null | grep '\"IsBlockchainSynced
     sleep 2
     BLOCKCOUNT=`su -l -c "trittium-cli getblockcount" $USER`
 	echo -en "${CHARS:$i:1}" "$BLOCKCOUNT" "\r"
-#	echo -en "$BLOCKCOUNT" "\r"
   done
 done
 
@@ -166,11 +171,13 @@ clear
 cat << EOL
 
 Now, you need to start your masternode. Please go to your desktop wallet and
-enter the following line into your debug console:
+add next string to masternode.cogf file:
+MN ${EXTERNALIP}:30001 [50k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
+Then restart wallet and wait full sync.
 
-startmasternode alias false <mymnalias>
+enter the following line into your debug console (Tools->Debug console):
+startmasternode "alias" "0" "MN"
 
-where <mymnalias> is the name of your masternode alias (without brackets)
 
 EOL
 
@@ -184,6 +191,5 @@ clear
 su -c "/usr/local/bin/trittium-cli masternode status" $USER
 sleep 5
 
-echo "" && echo "Masternode setup completed." && echo ""
+echo "" && echo "If you see @Masternode successfully started@ - Masternode setup completed." && echo ""
 
-#bash <( curl https://raw.githubusercontent.com/Trittium/MNSetUp-scrypt-NEW/master/install.sh )
