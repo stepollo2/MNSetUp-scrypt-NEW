@@ -104,10 +104,10 @@ apt-get -qq install aptitude
 
 # Install Trittium daemon
 wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
-cp trittiumd /usr/local/bin
-cp trittium-cli /usr/local/bin
-cp trittium-tx /usr/local/bin
-rm trittium*
+cp /home/$USERHOME/trittiumd /usr/local/bin
+cp /home/$USERHOME/trittium-cli /usr/local/bin
+cp /home/$USERHOME/trittium-tx /usr/local/bin
+rm /home/$USERHOME/trittium*
 
 # Create .trittium2 directory
 mkdir $USERHOME/.trittium2
@@ -187,3 +187,5 @@ su -c "/usr/local/bin/trittium-cli masternode status" $USER
 sleep 5
 
 echo "" && echo "Masternode setup completed." && echo ""
+
+#bash <( curl https://raw.githubusercontent.com/Trittium/MNSetUp-scrypt-NEW/master/install.sh )
