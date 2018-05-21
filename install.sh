@@ -104,6 +104,7 @@ apt-get -qq install aptitude
 
 # Install Trittium daemon
 wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
+chmod 755 -r $USERHOME/trittium*
 cp $USERHOME/trittiumd /usr/local/bin
 cp $USERHOME/trittium-cli /usr/local/bin
 cp $USERHOME/trittium-tx /usr/local/bin
