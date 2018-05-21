@@ -104,12 +104,11 @@ apt-get -qq install aptitude
 
 # Install Trittium daemon
 wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
-chmod 755 -r $USERHOME/trittium*
 cp $USERHOME/trittiumd /usr/local/bin
 cp $USERHOME/trittium-cli /usr/local/bin
 cp $USERHOME/trittium-tx /usr/local/bin
 rm $USERHOME/trittium*
-
+chmod 755 /usr/local/bin/trittium*
 # Create .trittium2 directory
 mkdir $USERHOME/.trittium2
 
@@ -124,9 +123,7 @@ listen=1
 server=1
 daemon=1
 maxconnections=256
-#externalip=${EXTERNALIP}
-#bind=${EXTERNALIP}:30001
-masternodeaddr=${IP}:30001
+masternodeaddr=${EXTERNALIP}:30001
 masternodeprivkey=${KEY}
 masternode=1
 EOL
