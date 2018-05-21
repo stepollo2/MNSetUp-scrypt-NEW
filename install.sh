@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#POSITIONAL=()
-
-#set -- "${POSITIONAL[@]}" # restore positional parameters
-
 clear
 
 # Set these to change the version of Trittium to install
@@ -51,9 +47,10 @@ echo "
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
- |        the masternode under a non-root user.     |::
- |      To stop Trittium daemon please type next:   |::
- |           sudo systemctl stop trittiumd          |::
+ |        the masternode under a user tritt.     |::
+ |                                                  |::
+ |        This version of installer will setup      |::
+ |           fail2ban and ufw for your safety.      |::
  |                                                  |::
  +------------------------------------------------+::
    ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -147,17 +144,19 @@ Restart=on-abort
 WantedBy=multi-user.target
 EOL
 sudo systemctl enable trittiumd
+sudo systemctl stop trittiumd
 sudo systemctl start trittiumd
 
 clear
 
 echo "Your masternode is syncing. Please wait for this process to finish."
 echo "This can take up to a few hours. Do not close this window." && echo ""
-
+BLOCKCOUNT=0
 until su -c "trittium-cli mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\" : true' > /dev/null" $USER; do
   for (( i=0; i<${#CHARS}; i++ )); do
     sleep 2
     echo -en "${CHARS:$i:1}" "\r"
+	echo -en "$BLOCKCOUNT" "\r"
   done
 done
 
