@@ -43,7 +43,7 @@ clear
 
 echo "
 
-       --  TRITTIUM MASTERNODE INSTALLER v2 --+
+  ------- TRITTIUM MASTERNODE INSTALLER v2 -------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
