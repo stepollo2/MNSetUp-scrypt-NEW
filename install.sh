@@ -43,7 +43,7 @@ clear
 
 echo "
 
-       ------- MASTERNODE INSTALLER v2 -------+
+       --  TRITTIUM MASTERNODE INSTALLER v2 --+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
@@ -159,7 +159,7 @@ echo "Your masternode is syncing. Please wait for this process to finish."
 echo "This can take up to a few hours. Do not close this window." && echo ""
 BLOCKCOUNT=0
 
-until [ BLOCKCOUNT -lt 10 ] do
+until [ BLOCKCOUNT -lt 10 ]; do
   for (( i=0; i<${#CHARS}; i++ )); do
     sleep 1
     BLOCKCOUNT=`su -l -c "trittium-cli getblockcount" $USER`
