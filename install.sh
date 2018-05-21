@@ -155,7 +155,7 @@ BLOCKCOUNT=0
 until su -c "trittium-cli mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\" : true' > /dev/null" $USER; do
   for (( i=0; i<${#CHARS}; i++ )); do
     sleep 2
-    BLOCKCOUNT='su -c "trittium-cli getblockcount 2>/dev/null" $USER'
+    BLOCKCOUNT='su -l -c "trittium-cli getblockcount" $USER'
 	echo -en "${CHARS:$i:1}" "$BLOCKCOUNT" "\r"
 #	echo -en "$BLOCKCOUNT" "\r"
   done
