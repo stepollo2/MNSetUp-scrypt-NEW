@@ -111,24 +111,24 @@ mkdir $USERHOME/.trittium2
 
 
 
-cat > /etc/systemd/system/trittiumd.service << EOL
-[Unit]
-Description=trittiumd
-After=network.target
-[Service]
-Type=forking
-User=${USER}
-WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/trittiumd -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2
-ExecStop=/usr/local/bin/trittium-cli -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2 stop
-Restart=on-abort
-[Install]
-WantedBy=multi-user.target
-EOL
-sudo systemctl enable trittiumd
-sudo systemctl stop trittiumd
-
-sleep 1
+#cat > /etc/systemd/system/trittiumd.service << EOL
+#[Unit]
+#Description=trittiumd
+#After=network.target
+#[Service]
+#Type=forking
+#User=${USER}
+#WorkingDirectory=${USERHOME}
+#ExecStart=/usr/local/bin/trittiumd -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2
+#ExecStop=/usr/local/bin/trittium-cli -conf=${USERHOME}/.trittium2/trittium2.conf -datadir=${USERHOME}/.trittium2 stop
+#Restart=on-abort
+#[Install]
+#WantedBy=multi-user.target
+#EOL
+#sudo systemctl enable trittiumd
+#sudo systemctl stop trittiumd
+su - $USER -c trittium-cli stop
+sleep 6
 
 
 # Create trittium2.conf
@@ -151,7 +151,8 @@ chown -R $USER:$USER $USERHOME/.trittium2
 sleep 1
 
 
-sudo systemctl start trittiumd
+#sudo systemctl start trittiumd
+su - $USER -c trittiumd
 
 clear
 
