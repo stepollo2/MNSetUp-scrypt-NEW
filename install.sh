@@ -142,6 +142,7 @@ listen=1
 server=1
 daemon=1
 maxconnections=256
+rpcport=30002
 masternodeaddr=${EXTERNALIP}:30001
 masternodeprivkey=${KEY}
 masternode=1
