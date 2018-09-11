@@ -177,7 +177,7 @@ cat << EOL
 
 Now, you need to start your masternode. Please go to your desktop wallet and
 add next string to masternode.cogf file:
-MN ${EXTERNALIP}:30001 [50k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
+MN ${EXTERNALIP}:30001 [private key 'masternode genkey'] [50k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
 Then restart wallet and wait full sync.
 
 enter the following line into your debug console (Tools->Debug console):
