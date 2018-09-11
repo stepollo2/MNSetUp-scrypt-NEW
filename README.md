@@ -16,7 +16,7 @@ Use this instructions to install the wallet,  and setup single masternode on Win
 ## 1. Desktop Wallet Preparation
 
 ### 1.1 Setup the wallet
-1. Download the [wallet](https://github.com/Trittium/trittium/releases/download/2.1.1/Trittium-2.1.1-Windows-QT.zip)
+1. Download the [wallet](https://github.com/Trittium/trittium/releases/)
 2. Start the wallet and wait for the sync. (30min to 10h depending on the number of the connections)
 	
 ## 2. Masternode Setup
