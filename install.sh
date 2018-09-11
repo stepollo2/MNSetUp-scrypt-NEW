@@ -3,9 +3,9 @@
 clear
 
 # Set these to change the version of Trittium to install
-TARBALLURL="https://github.com/Trittium/trittium/releases/download/2.1.1/Trittium-2.1.1-Ubuntu-daemon.tgz"
-TARBALLNAME="Trittium-2.1.1-Ubuntu-daemon.tgz"
-TRTTVERSION="2.1.0"
+TARBALLURL="https://github.com/Trittium/trittium/releases/download/2.2.0.2/Trittium-2.2.0.2-Ubuntu-daemon.tgz"
+TARBALLNAME="Trittium-2.2.0.2-Ubuntu-daemon.tgz"
+TRTTVERSION="2.2.0.2"
 
 #!/bin/bash
 
