@@ -3,9 +3,9 @@
 clear
 
 # Set these to change the version of Trittium to install
-TARBALLURL="https://github.com/Trittium/trittium/releases/download/2.2.0.2/Trittium-2.2.0.2-Ubuntu-daemon.tgz"
-TARBALLNAME="Trittium-2.2.0.2-Ubuntu-daemon.tgz"
-TRTTVERSION="2.2.0.2"
+TARBALLURL="https://github.com/Trittium/trittium/releases/download/v3.0.1.0/Trittium-3.0.1.0-Linux.zip"
+TARBALLNAME="Trittium-3.0.1.0-Linux.zip"
+TRTTVERSION="3.0.1.0"
 
 #!/bin/bash
 
@@ -101,7 +101,7 @@ apt-get -qq install aptitude
 
 # Install Trittium daemon
 #wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
-wget $TARBALLURL && tar -xvf $TARBALLNAME -C $USERHOME/  && rm $TARBALLNAME
+wget $TARBALLURL && unzip $TARBALLNAME -d USERHOME/  && rm $TARBALLNAME
 cp $USERHOME/trittiumd /usr/local/bin
 cp $USERHOME/trittium-cli /usr/local/bin
 cp $USERHOME/trittium-tx /usr/local/bin
